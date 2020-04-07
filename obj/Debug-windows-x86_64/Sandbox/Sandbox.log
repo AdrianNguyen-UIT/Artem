@@ -1,0 +1,7 @@
+﻿  Sandbox.cpp
+C:\Devs\Artem\Artem\src\Artem\Log.h(13,55): warning C4251: 'Artem::Log::s_ArtemLogger': class 'std::shared_ptr<spdlog::logger>' needs to have dll-interface to be used by clients of class 'Artem::Log'
+C:\Devs\Artem\Artem\vendor\spdlog\include\spdlog\details\registry.h(34): message : see declaration of 'std::shared_ptr<spdlog::logger>'
+C:\Devs\Artem\Artem\src\Artem\Log.h(30,1): warning C4005: 'AT_DEBUG': macro redefinition
+C:\Devs\Artem\Sandbox\src\Sandbox.cpp : message : see previous definition of 'AT_DEBUG'
+C:\Devs\Artem\Sandbox\src\Sandbox.cpp(22,1): warning C4506: no definition for inline function 'std::shared_ptr<spdlog::logger> Artem::Log::GetArtemLogger(void)'
+  Sandbox.vcxproj -> C:\Devs\Artem\Sandbox\..\bin\Debug-windows-x86_64\Sandbox\Sandbox.exe
