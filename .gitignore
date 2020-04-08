@@ -2,7 +2,12 @@
 .vs/
 bin/
 obj/
+.vscode/
 
 #Files
 *.user
 *.bat
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user

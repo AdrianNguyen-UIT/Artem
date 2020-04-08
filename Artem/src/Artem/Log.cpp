@@ -17,7 +17,7 @@ namespace Artem
 
 	void Log::Init()
 	{
-		spdlog::set_pattern("%^[%T] %n: %v%$");
+		spdlog::set_pattern("%^[%T] %n->%l: %v%$");
 
 		s_ArtemLogger = spdlog::stdout_color_mt("ARTEM");
 		s_ArtemLogger->set_level(spdlog::level::trace);

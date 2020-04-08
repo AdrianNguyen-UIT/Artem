@@ -4,6 +4,9 @@
     <Filter Include="Artem">
       <UniqueIdentifier>{FEB6D70C-6ACB-FFBD-334D-A31D9F20FCEE}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Artem\Event">
+      <UniqueIdentifier>{CFFE55CC-3BB4-CEC1-C4A8-C898305DC5C5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Artem.h" />
@@ -15,6 +18,18 @@
     </ClInclude>
     <ClInclude Include="src\Artem\EntryPoint.h">
       <Filter>Artem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Artem\Event\ApplicationEvent.h">
+      <Filter>Artem\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Artem\Event\Event.h">
+      <Filter>Artem\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Artem\Event\KeyEvent.h">
+      <Filter>Artem\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Artem\Event\MouseEvent.h">
+      <Filter>Artem\Event</Filter>
     </ClInclude>
     <ClInclude Include="src\Artem\Log.h">
       <Filter>Artem</Filter>
