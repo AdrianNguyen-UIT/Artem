@@ -43,6 +43,8 @@ namespace Artem
         EVENT_CLASS_TYPE(KeyPress)
     };
 
+
+
     class KeyReleaseEvent : public KeyEvent
     {
     public:
@@ -54,7 +56,7 @@ namespace Artem
         virtual std::string ToString() const override
         {
             std::stringstream ss;
-            ss << "KeyPressEvent: " << m_KeyCode;
+            ss << "KeyReleaseEvent: " << m_KeyCode;
             return ss.str();
         }
 

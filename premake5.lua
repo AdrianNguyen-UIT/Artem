@@ -12,14 +12,24 @@ workspace "Artem"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+--Include Dir Table/Struct
+IncludeDir = {}
+IncludeDir["GLFW"] = "Artem/vendor/GLFW/include"
+
+
+include "Artem/vendor/GLFW"
+
+
 project "Artem"
     location "Artem"
     kind "SharedLib"
     language "C++"
 
     targetdir ("bin/"..outputdir.."/%{prj.name}")
-
     objdir ("obj/"..outputdir.."/%{prj.name}")
+
+    pchheader "atpch.h"
+    pchsource "%{prj.name}/src/atpch.cpp"
 
     files
     {
@@ -30,7 +40,14 @@ project "Artem"
     includedirs
     {
         "%{prj.name}/src",
-        "%{prj.name}/vendor/spdlog/include"
+        "%{prj.name}/vendor/spdlog/include",
+        "%{IncludeDir.GLFW}"
+    }
+
+    links
+    {
+        "GLFW",
+        "opengl32.lib"
     }
 
     filter "system:windows"
@@ -51,14 +68,17 @@ project "Artem"
 
     filter "configurations:Debug"
         defines "AT_DEBUG"
+        buildoptions "/MDd"
         symbols "On"
 
     filter "configurations:Release"
         defines "AT_RELEASE"
+        buildoptions "/MD"
         optimize "On"
 
     filter "configurations:Dist"
         defines "AT_DIST"
+        buildoptions "/MD"
         optimize "On"
 
 
@@ -100,14 +120,17 @@ project "Sandbox"
 
     filter "configurations:Debug"
         defines "AT_DEBUG"
+        buildoptions "/MDd"
         symbols "On"
 
     filter "configurations:Release"
         defines "AT_RELEASE"
+        buildoptions "/MD"
         optimize "On"
 
     filter "configurations:Dist"
         defines "AT_DIST"
+        buildoptions "/MD"
         optimize "On"
 
 

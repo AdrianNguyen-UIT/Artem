@@ -1,8 +1,6 @@
 #pragma once
-
+#include "atpch.h"
 #include "Artem/Core.h"
-#include <string>
-#include <sstream>
 
 
 namespace Artem
@@ -66,12 +64,20 @@ namespace Artem
         {
         }
 
-
+        template<typename T, typename F>
+        bool Dispatch(const F& function)
+        {
+            if (m_Event.GetEventType() == T::GetStaticType())
+            {
+                m_Event.SetHandled(function(static_cast<T&>(m_Event)));//set Handle and call function
+                return true;
+            }
+            return false;
+        }
     };
 
-    std::ostream& operator<<(std::ostream& out, const Event& event)
+    inline std::ostream& operator<<(std::ostream& out, const Event& e)
     {
-        out << event.ToString();
-        return out;
+        return out << e.ToString();
     }
 }

@@ -7,6 +7,15 @@
     <Filter Include="Artem\Event">
       <UniqueIdentifier>{CFFE55CC-3BB4-CEC1-C4A8-C898305DC5C5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Artem\Layer">
+      <UniqueIdentifier>{4A7AC9CC-B62F-42C2-3F24-3C99ABD838C6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Artem.h" />
@@ -31,16 +40,39 @@
     <ClInclude Include="src\Artem\Event\MouseEvent.h">
       <Filter>Artem\Event</Filter>
     </ClInclude>
+    <ClInclude Include="src\Artem\Layer\Layer.h">
+      <Filter>Artem\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Artem\Layer\LayerStack.h">
+      <Filter>Artem\Layer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Artem\Log.h">
       <Filter>Artem</Filter>
     </ClInclude>
+    <ClInclude Include="src\Artem\Window.h">
+      <Filter>Artem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\atpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Artem\Application.cpp">
       <Filter>Artem</Filter>
     </ClCompile>
+    <ClCompile Include="src\Artem\Layer\Layer.cpp">
+      <Filter>Artem\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Artem\Layer\LayerStack.cpp">
+      <Filter>Artem\Layer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Artem\Log.cpp">
       <Filter>Artem</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindowcpp.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\atpch.cpp" />
   </ItemGroup>
 </Project>
