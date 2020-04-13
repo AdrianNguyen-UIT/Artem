@@ -4,3 +4,6 @@
 [submodule "Artem\\vendor\\GLFW"]
 	path = Artem\\vendor\\GLFW
 	url = https://github.com/AdrianNguyen-UIT/glfw
+[submodule "Artem/vendor/ImGui"]
+	path = Artem/vendor/ImGui
+	url = https://github.com/AdrianNguyen-UIT/imgui

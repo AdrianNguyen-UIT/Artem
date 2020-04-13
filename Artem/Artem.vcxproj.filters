@@ -4,11 +4,17 @@
     <Filter Include="Artem">
       <UniqueIdentifier>{FEB6D70C-6ACB-FFBD-334D-A31D9F20FCEE}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Artem\Core">
+      <UniqueIdentifier>{16EA108A-02A2-52D7-6BA9-2B335780EDC7}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Artem\Event">
       <UniqueIdentifier>{CFFE55CC-3BB4-CEC1-C4A8-C898305DC5C5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Artem\Layer">
       <UniqueIdentifier>{4A7AC9CC-B62F-42C2-3F24-3C99ABD838C6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Artem\Layer\ImGuiLayer">
+      <UniqueIdentifier>{B1FE2AA9-9DF8-53FB-8665-EA0B72FEB967}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
@@ -19,14 +25,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Artem.h" />
-    <ClInclude Include="src\Artem\Application.h">
-      <Filter>Artem</Filter>
+    <ClInclude Include="src\Artem\Core\Application.h">
+      <Filter>Artem\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Artem\Core.h">
-      <Filter>Artem</Filter>
+    <ClInclude Include="src\Artem\Core\Core.h">
+      <Filter>Artem\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Artem\EntryPoint.h">
-      <Filter>Artem</Filter>
+    <ClInclude Include="src\Artem\Core\EntryPoint.h">
+      <Filter>Artem\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Artem\Core\Log.h">
+      <Filter>Artem\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Artem\Core\Window.h">
+      <Filter>Artem\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Artem\Event\ApplicationEvent.h">
       <Filter>Artem\Event</Filter>
@@ -40,17 +52,14 @@
     <ClInclude Include="src\Artem\Event\MouseEvent.h">
       <Filter>Artem\Event</Filter>
     </ClInclude>
+    <ClInclude Include="src\Artem\Layer\ImGuiLayer\ImGuiLayer.h">
+      <Filter>Artem\Layer\ImGuiLayer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Artem\Layer\Layer.h">
       <Filter>Artem\Layer</Filter>
     </ClInclude>
     <ClInclude Include="src\Artem\Layer\LayerStack.h">
       <Filter>Artem\Layer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Artem\Log.h">
-      <Filter>Artem</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Artem\Window.h">
-      <Filter>Artem</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
@@ -58,17 +67,23 @@
     <ClInclude Include="src\atpch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Artem\Application.cpp">
-      <Filter>Artem</Filter>
+    <ClCompile Include="src\Artem\Core\Application.cpp">
+      <Filter>Artem\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Artem\Core\Log.cpp">
+      <Filter>Artem\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Artem\Layer\ImGuiLayer\ImGuiBuild.cpp">
+      <Filter>Artem\Layer\ImGuiLayer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Artem\Layer\ImGuiLayer\ImGuiLayer.cpp">
+      <Filter>Artem\Layer\ImGuiLayer</Filter>
     </ClCompile>
     <ClCompile Include="src\Artem\Layer\Layer.cpp">
       <Filter>Artem\Layer</Filter>
     </ClCompile>
     <ClCompile Include="src\Artem\Layer\LayerStack.cpp">
       <Filter>Artem\Layer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Artem\Log.cpp">
-      <Filter>Artem</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindowcpp.cpp">
       <Filter>Platform\Windows</Filter>

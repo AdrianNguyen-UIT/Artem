@@ -1,12 +1,13 @@
 #pragma once
 
 //For use by Artem application-----
-#include "Artem/Application.h"
+#include "Artem/Core/Application.h"
 #include "Artem/Layer/Layer.h"
-#include "Artem/Log.h"
+#include "Artem/Core/Log.h"
+#include "Artem/Layer/ImGuiLayer/ImGuiLayer.h"
 //---------------------------------
 
 
 //Entry point--------------
-#include "Artem/EntryPoint.h"
+#include "Artem/Core/EntryPoint.h"
 //-------------------------

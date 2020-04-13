@@ -4,8 +4,9 @@
 #include "Artem/Event/KeyEvent.h"
 #include "Artem/Event/MouseEvent.h"
 
-#include "Layer/LayerStack.h"
-#include "Window.h"
+#include "Artem/Layer/LayerStack.h"
+#include "Artem/Core/Window.h"
+
 namespace Artem
 {
 	class AT_API Application
@@ -15,10 +16,13 @@ namespace Artem
 		bool m_Running;
 		void OnEvent(Event& e);
 		LayerStack m_LayerStack;
-
+		static Application* s_AppInstance;
 	public:
 		Application();
 		virtual ~Application();
+
+		Window& GetWindow() const;
+		static Application& GetApplication();
 
 		void Run();
 		void PushLayer(Layer* layer);

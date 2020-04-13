@@ -32,21 +32,28 @@ namespace Artem
 
 		AT_CORE_INFO("Creating window {0} ({1}, {2})", p_WindowProp.Title, p_WindowProp.Width, p_WindowProp.Height);
 
-		int success = glfwInit();
-		AT_ASSERT(success, "COULD NOT INIT GLFW!");
+		int status = glfwInit();
+		AT_ASSERT(status, "FAIL TO INITIALIZE GLFW!");
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-		glfwWindowHint(GLFW_OPENGL_PROFILE,GLFW_OPENGL_CORE_PROFILE);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-		m_Window = glfwCreateWindow((int)m_WindowData.Width, (int)m_WindowData.Height, m_WindowData.Title.c_str(), NULL, NULL);
+		m_Window = glfwCreateWindow((int)m_WindowData.Width, (int)m_WindowData.Height, m_WindowData.Title.c_str(), nullptr, nullptr);
 
 		if (!m_Window)
 		{
-			AT_ASSERT(0, "FAIL TO CREATE WINDOW");
+			AT_ASSERT(0, "FAIL TO CREATE WINDOW!");
 			glfwTerminate();
 			return;
 		}
 		glfwMakeContextCurrent(m_Window);
+
+		//glad: Load all OpenGL function pointers
+		status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		AT_ASSERT(status,"FAIL TO INITIALIZE GLAD!");
+		//------------------------------------
+
+
 		glfwSetWindowUserPointer(m_Window, &m_WindowData);//set user's void pointer to window data
 		SetVSync(true);
 
@@ -58,7 +65,7 @@ namespace Artem
 			data.Height = p_Height;
 
 			WindowResizeEvent event(p_Width, p_Height);
-			data.EventCallBack(event);
+			data.EventCallback(event);
 		});
 
 		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window)
@@ -66,7 +73,7 @@ namespace Artem
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
 			WindowCloseEvent event;
-			data.EventCallBack(event);
+			data.EventCallback(event);
 		});
 
 		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scandcode, int action, int mods)
@@ -78,22 +85,30 @@ namespace Artem
 				case GLFW_PRESS:
 				{
 					KeyPressEvent event(key, 0);
-					data.EventCallBack(event);
+					data.EventCallback(event);
 					break;
 				}
 				case GLFW_RELEASE:
 				{
 					KeyReleaseEvent event(key);
-					data.EventCallBack(event);
+					data.EventCallback(event);
 					break;
 				}
 				case GLFW_REPEAT:
 				{
 					KeyPressEvent event(key, 1);
-					data.EventCallBack(event);
+					data.EventCallback(event);
 					break;
 				}
 			}
+		});
+
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int keycode)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+			KeyTypedEvent event(keycode);
+			data.EventCallback(event);
 		});
 
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
@@ -105,13 +120,13 @@ namespace Artem
 				case GLFW_PRESS:
 				{
 					MouseButtonPressEvent event(button);
-					data.EventCallBack(event);
+					data.EventCallback(event);
 					break;
 				}
 				case GLFW_RELEASE:
 				{
 					MouseButtonReleaseEvent event(button);
-					data.EventCallBack(event);
+					data.EventCallback(event);
 					break;
 				}
 			}
@@ -122,7 +137,7 @@ namespace Artem
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
 			MouseScrollEvent event((float)xoffset, (float)yoffset);
-			data.EventCallBack(event);
+			data.EventCallback(event);
 		});
 
 		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xpos, double ypos)
@@ -130,7 +145,7 @@ namespace Artem
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
 			MouseMoveEvent event((float)xpos, (float)ypos);
-			data.EventCallBack(event);
+			data.EventCallback(event);
 		});
 
 		glfwSetErrorCallback([](int error, const char* description) 
@@ -148,11 +163,13 @@ namespace Artem
 
 	void WindowsWindow::OnUpdate()
 	{
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
-
 		glfwSwapBuffers(m_Window);
 		glfwPollEvents();
+	}
+
+	void* WindowsWindow::GetOriginalWindow() const
+	{
+		return m_Window;
 	}
 
 	unsigned int WindowsWindow::GetWidth() const
@@ -165,9 +182,9 @@ namespace Artem
 		return m_WindowData.Height;
 	}
 
-	void WindowsWindow::SetEventCallBack(const EventCallBackFnc& p_EventCallBack)
+	void WindowsWindow::SetEventCallback(const EventCallbackFnc& p_EventCallback)
 	{
-		m_WindowData.EventCallBack = p_EventCallBack;
+		m_WindowData.EventCallback = p_EventCallback;
 	}
 
 	void WindowsWindow::SetVSync(bool enable)

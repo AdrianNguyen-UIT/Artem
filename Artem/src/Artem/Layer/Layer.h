@@ -1,5 +1,5 @@
 #pragma once
-#include "Artem/Core.h"
+#include "Artem/Core/Core.h"
 #include "Artem/Event/Event.h"
 
 namespace Artem

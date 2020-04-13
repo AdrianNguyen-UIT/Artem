@@ -1,6 +1,6 @@
 #pragma once
 #include "atpch.h"
-#include "Artem/Core.h"
+#include "Artem/Core/Core.h"
 
 
 namespace Artem
@@ -10,7 +10,7 @@ namespace Artem
         None = 0,
         WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMove,
         AppTick, AppUpdate, AppRender,
-        KeyPress, KeyRelease,
+        KeyPress, KeyRelease, KeyType,
         MouseButtonPress, MouseButtonRelease, MouseMove, MouseScroll
     };
 

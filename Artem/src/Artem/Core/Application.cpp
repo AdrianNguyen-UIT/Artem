@@ -4,18 +4,30 @@
 #include "GLFW/glfw3.h"
 namespace Artem
 {
+	Application* Application::s_AppInstance = nullptr;
+
 	Application::Application()
 	{
 		m_Running = true;
+		AT_ASSERT(!s_AppInstance, "Application already exists!");
+		s_AppInstance = this;
 		m_Window = std::unique_ptr<Window>(Window::Create());
-		m_Window->SetEventCallBack(BIND_EVENT_FNC(Application::OnEvent));
-
-
+		m_Window->SetEventCallback(BIND_EVENT_FNC(Application::OnEvent));
 	}
 
 	Application::~Application()
 	{
 
+	}
+
+	Window& Application::GetWindow() const
+	{
+		return *m_Window;
+	}
+
+	Application& Application::GetApplication()
+	{
+		return *s_AppInstance;
 	}
 
 	void Application::OnEvent(Event& event)
@@ -31,7 +43,6 @@ namespace Artem
 				break;
 			}
 		}
-
 		AT_CORE_INFO("{0}", event);
 	}
 
@@ -44,17 +55,21 @@ namespace Artem
 	void Application::PushLayer(Layer* layer)
 	{
 		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* overlay)
 	{
 		m_LayerStack.PushOverlay(overlay);
+		overlay->OnAttach();
 	}
 
 	void Application::Run()
 	{
 		while (m_Running)
 		{
+			glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+			glClear(GL_COLOR_BUFFER_BIT);
 			for (Layer* layer : m_LayerStack)
 			{
 				layer->OnUpdate();

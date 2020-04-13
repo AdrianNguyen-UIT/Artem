@@ -1,5 +1,6 @@
 #pragma once
-#include "Artem/Window.h"
+#include "Artem/Core/Window.h"
+#include "glad/glad.h"
 #include "GLFW/glfw3.h"
 namespace Artem
 {
@@ -12,7 +13,7 @@ namespace Artem
 			unsigned int Width;
 			unsigned int Height;
 			bool IsVSync;
-			EventCallBackFnc EventCallBack;
+			EventCallbackFnc EventCallback;
 		};
 
 		WindowData m_WindowData;
@@ -27,10 +28,11 @@ namespace Artem
 
 		virtual void OnUpdate() override;
 
+		virtual void* GetOriginalWindow() const override;
 		virtual unsigned int GetWidth() const override;
 		virtual unsigned int GetHeight() const override;
 
-		virtual void SetEventCallBack(const EventCallBackFnc&) override;
+		virtual void SetEventCallback(const EventCallbackFnc&) override;
 		virtual void SetVSync(bool) override;
 		virtual bool IsVSync() const override;
 	};
