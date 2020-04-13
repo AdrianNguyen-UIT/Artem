@@ -15,10 +15,13 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 --Include Dir Table/Struct
 IncludeDir = {}
 IncludeDir["GLFW"] = "Artem/vendor/GLFW/include"
+IncludeDir["Glad"] = "Artem/vendor/Glad/include"
+IncludeDir["ImGui"] = "Artem/vendor/ImGui"
 
 
 include "Artem/vendor/GLFW"
-
+include "Artem/vendor/Glad"
+include "Artem/vendor/ImGui"
 
 project "Artem"
     location "Artem"
@@ -41,18 +44,22 @@ project "Artem"
     {
         "%{prj.name}/src",
         "%{prj.name}/vendor/spdlog/include",
-        "%{IncludeDir.GLFW}"
+        "%{IncludeDir.GLFW}",
+        "%{IncludeDir.Glad}",
+        "%{IncludeDir.ImGui}"
     }
 
     links
     {
         "GLFW",
+        "Glad",
+        "ImGui",
         "opengl32.lib"
     }
 
     filter "system:windows"
         cppdialect "C++17"
-        staticruntime "On"
+        staticruntime "off"
         systemversion "latest"
 
         defines
@@ -68,18 +75,18 @@ project "Artem"
 
     filter "configurations:Debug"
         defines "AT_DEBUG"
-        buildoptions "/MDd"
-        symbols "On"
+        runtime "Debug"
+        symbols "on"
 
     filter "configurations:Release"
         defines "AT_RELEASE"
-        buildoptions "/MD"
-        optimize "On"
+        runtime "Release"
+        optimize "on"
 
     filter "configurations:Dist"
         defines "AT_DIST"
-        buildoptions "/MD"
-        optimize "On"
+        runtime "Release"
+        optimize "on"
 
 
 project "Sandbox"
@@ -110,7 +117,7 @@ project "Sandbox"
 
     filter "system:windows"
         cppdialect "C++17"
-        staticruntime "On"
+        staticruntime "off"
         systemversion "latest"
 
         defines
@@ -118,20 +125,20 @@ project "Sandbox"
             "AT_PLATFORM_WINDOWS"
         }
 
-    filter "configurations:Debug"
+        filter "configurations:Debug"
         defines "AT_DEBUG"
-        buildoptions "/MDd"
-        symbols "On"
+        runtime "Debug"
+        symbols "on"
 
     filter "configurations:Release"
         defines "AT_RELEASE"
-        buildoptions "/MD"
-        optimize "On"
+        runtime "Release"
+        optimize "on"
 
     filter "configurations:Dist"
         defines "AT_DIST"
-        buildoptions "/MD"
-        optimize "On"
+        runtime "Release"
+        optimize "on"
 
 
 
