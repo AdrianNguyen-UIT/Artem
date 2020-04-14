@@ -7,3 +7,6 @@
 [submodule "Artem/vendor/ImGui"]
 	path = Artem/vendor/ImGui
 	url = https://github.com/AdrianNguyen-UIT/imgui
+[submodule "Artem\\vendor\\glm"]
+	path = Artem\\vendor\\glm
+	url = https://github.com/g-truc/glm
