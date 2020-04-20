@@ -22,6 +22,11 @@ namespace Artem
 
 	}
 
+	void Layer::OnImGuiRender()
+	{
+
+	}
+
 	void Layer::OnEvent(Event& event)
 	{
 

@@ -17,6 +17,7 @@ namespace Artem
 		virtual void OnAttach();
 		virtual void OnUpdate();
 		virtual void OnDetach();
+		virtual void OnImGuiRender();//For every layer to implement their own GUI
 		virtual void OnEvent(Event& event);
 
 		inline std::string GetName() const;

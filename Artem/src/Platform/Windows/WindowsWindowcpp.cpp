@@ -6,7 +6,6 @@
 #include "Artem/Event/MouseEvent.h"
 
 
-
 namespace Artem
 {
 	WindowsWindow::WindowsWindow(const WindowProp& p_WindowProp)
@@ -159,6 +158,7 @@ namespace Artem
 	void WindowsWindow::ShutDown()
 	{
 		glfwDestroyWindow(m_Window);
+		glfwTerminate();
 	}
 
 	void WindowsWindow::OnUpdate()

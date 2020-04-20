@@ -14,14 +14,17 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 --Include Dir Table/Struct
 IncludeDir = {}
+IncludeDir["spdlog"] = "Artem/vendor/spdlog/include"
 IncludeDir["GLFW"] = "Artem/vendor/GLFW/include"
 IncludeDir["Glad"] = "Artem/vendor/Glad/include"
 IncludeDir["ImGui"] = "Artem/vendor/ImGui"
+IncludeDir["glm"] = "Artem/vendor/glm"
 
-
-include "Artem/vendor/GLFW"
-include "Artem/vendor/Glad"
-include "Artem/vendor/ImGui"
+group "Dependencies"
+    include "Artem/vendor/GLFW"
+    include "Artem/vendor/Glad"
+    include "Artem/vendor/ImGui"
+group ""
 
 project "Artem"
     location "Artem"
@@ -38,15 +41,18 @@ project "Artem"
     {
         "%{prj.name}/src/**.h",
         "%{prj.name}/src/**.cpp",
+        "%{prj.name}/vendor/glm/glm/**.hpp",
+        "%{prj.name}/vendor/glm/glm/**.inl",
     }
 
     includedirs
     {
         "%{prj.name}/src",
-        "%{prj.name}/vendor/spdlog/include",
+        "%{IncludeDir.spdlog}",
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
-        "%{IncludeDir.ImGui}"
+        "%{IncludeDir.ImGui}",
+        "%{IncludeDir.glm}",
     }
 
     links
@@ -107,12 +113,15 @@ project "Sandbox"
     includedirs
     {
         "Artem/vendor/spdlog/include",
-        "Artem/src"
+        "Artem/src",
+        "Artem/vendor",
+        "%{IncludeDir.glm}"
     }
 
     links
     {
-        "Artem"
+        "Artem",
+        "ImGui"
     }
 
     filter "system:windows"

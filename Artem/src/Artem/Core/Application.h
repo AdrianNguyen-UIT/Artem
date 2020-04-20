@@ -5,6 +5,7 @@
 #include "Artem/Event/MouseEvent.h"
 
 #include "Artem/Layer/LayerStack.h"
+#include "Artem/Layer/ImGuiLayer/ImGuiLayer.h"
 #include "Artem/Core/Window.h"
 
 namespace Artem
@@ -13,10 +14,12 @@ namespace Artem
 	{
 	private:
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running;
-		void OnEvent(Event& e);
 		LayerStack m_LayerStack;
 		static Application* s_AppInstance;
+
+		void OnEvent(Event& e);
 	public:
 		Application();
 		virtual ~Application();

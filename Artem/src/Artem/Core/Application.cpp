@@ -2,6 +2,9 @@
 
 #include "Application.h"
 #include "GLFW/glfw3.h"
+
+#include "Artem/Input/Input.h"
+#include "Artem/Input/KeyCode.h"
 namespace Artem
 {
 	Application* Application::s_AppInstance = nullptr;
@@ -13,6 +16,9 @@ namespace Artem
 		s_AppInstance = this;
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FNC(Application::OnEvent));
+		m_ImGuiLayer = new ImGuiLayer();
+		PushOverlay(m_ImGuiLayer);
+
 	}
 
 	Application::~Application()
@@ -43,7 +49,6 @@ namespace Artem
 				break;
 			}
 		}
-		AT_CORE_INFO("{0}", event);
 	}
 
 	bool Application::OnWindowClose(WindowCloseEvent& event)
@@ -70,10 +75,23 @@ namespace Artem
 		{
 			glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
+
+			//Update: Submit things for render, etc.
 			for (Layer* layer : m_LayerStack)
 			{
 				layer->OnUpdate();
 			}
+			
+			//In render thread
+			//Render ImGui layer from member ImGuiLayer and other layers
+			m_ImGuiLayer->BeginImGuiRender();
+			for (Layer* layer : m_LayerStack)
+			{
+				layer->OnImGuiRender();
+			}
+			m_ImGuiLayer->EndImGuiRender();
+
+
 			m_Window->OnUpdate();
 		}
 	}

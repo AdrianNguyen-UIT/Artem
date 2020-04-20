@@ -1,5 +1,5 @@
 #include <Artem.h>
-
+#include "ImGui/imgui.h"
 class ExampleLayer : public Artem::Layer
 {
 public:
@@ -10,12 +10,19 @@ public:
 
 	void OnUpdate() override
 	{
-		//AT_APP_TRACE("Layer: {0} Is updating...", m_LayerName);
+
 	}
 
 	void OnEvent(Artem::Event& event) override
 	{
-		AT_APP_TRACE("Layer: {0} {1}", m_LayerName, event);
+	}
+
+	virtual void OnImGuiRender() override
+	{
+		bool open = true;
+		ImGui::Begin("Example", &open);
+		ImGui::Text("Here is ExampleLayer");
+		ImGui::End();
 	}
 };
 
@@ -26,7 +33,6 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushLayer(new Artem::ImGuiLayer());
 	}
 
 	~Sandbox()
