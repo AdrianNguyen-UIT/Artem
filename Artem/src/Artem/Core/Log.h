@@ -7,7 +7,7 @@
 
 namespace Artem
 {
-	class AT_API Log
+	class Log
 	{
 	private:
 		static std::shared_ptr<spdlog::logger> s_CoreLogger;
@@ -18,8 +18,8 @@ namespace Artem
 		~Log();
 
 		static void Init();
-		inline static std::shared_ptr<spdlog::logger> GetCoreLogger();
-		inline static std::shared_ptr<spdlog::logger> GetAppLogger();
+		static std::shared_ptr<spdlog::logger> GetCoreLogger();
+		static std::shared_ptr<spdlog::logger> GetAppLogger();
 	};
 }
 

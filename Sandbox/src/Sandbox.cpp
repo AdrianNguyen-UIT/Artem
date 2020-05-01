@@ -1,5 +1,6 @@
 #include <Artem.h>
 #include "ImGui/imgui.h"
+
 class ExampleLayer : public Artem::Layer
 {
 public:
@@ -10,7 +11,6 @@ public:
 
 	void OnUpdate() override
 	{
-
 	}
 
 	void OnEvent(Artem::Event& event) override

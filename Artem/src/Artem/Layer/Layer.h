@@ -4,7 +4,7 @@
 
 namespace Artem
 {
-	class AT_API Layer
+	class Layer
 	{
 	protected:
 		std::string m_LayerName;

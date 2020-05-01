@@ -16,8 +16,6 @@ namespace Artem
 
 	void ImGuiLayer::OnUpdate()
 	{
-
-
 	}
 
 	void ImGuiLayer::OnImGuiRender()

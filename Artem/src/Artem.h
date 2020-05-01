@@ -12,7 +12,6 @@
 #include "Artem/Layer/ImGuiLayer/ImGuiLayer.h"
 //---------------------------------
 
-
 //Entry point--------------
 #include "Artem/Core/EntryPoint.h"
 //-------------------------

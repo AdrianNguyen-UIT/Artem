@@ -3,7 +3,7 @@
 
 namespace Artem
 {
-	class AT_API Input
+	class Input
 	{
 	private:
 		static Input* s_InputInstance;

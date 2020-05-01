@@ -20,7 +20,7 @@ namespace Artem
 	};
 
 	//Window Interface
-	class AT_API Window
+	class Window
 	{
 	public:
 		using EventCallbackFnc = std::function<void(Event&)>;

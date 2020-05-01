@@ -9,7 +9,6 @@ workspace "Artem"
         "Dist"
     }
 
-
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 --Include Dir Table/Struct
@@ -28,8 +27,10 @@ group ""
 
 project "Artem"
     location "Artem"
-    kind "SharedLib"
+    kind "StaticLib"
     language "C++"
+    cppdialect "C++17"
+    staticruntime "on"
 
     targetdir ("bin/"..outputdir.."/%{prj.name}")
     objdir ("obj/"..outputdir.."/%{prj.name}")
@@ -55,6 +56,11 @@ project "Artem"
         "%{IncludeDir.glm}",
     }
 
+    defines
+    {
+        "_CRT_SECURE_NO_WARNINGS"
+    }
+
     links
     {
         "GLFW",
@@ -64,19 +70,11 @@ project "Artem"
     }
 
     filter "system:windows"
-        cppdialect "C++17"
-        staticruntime "off"
         systemversion "latest"
 
         defines
         {
-            "AT_PLATFORM_WINDOWS",
-            "AT_BUILD_DLL"
-        }
-
-        postbuildcommands 
-        {
-            ("{COPY} %{cfg.buildtarget.relpath} ../bin/"..outputdir.."/Sandbox") --copy Artem.dll file into Sandbox folder next to Sandbox.exe-- 
+            "AT_PLATFORM_WINDOWS"
         }
 
     filter "configurations:Debug"
@@ -99,9 +97,10 @@ project "Sandbox"
     location "Sandbox"
     kind "ConsoleApp"
     language "C++"
+    cppdialect "C++17"
+    staticruntime "on"
 
     targetdir ("bin/"..outputdir.."/%{prj.name}")
-
     objdir ("obj/"..outputdir.."/%{prj.name}")
 
     files
@@ -120,13 +119,10 @@ project "Sandbox"
 
     links
     {
-        "Artem",
-        "ImGui"
+        "Artem"
     }
 
     filter "system:windows"
-        cppdialect "C++17"
-        staticruntime "off"
         systemversion "latest"
 
         defines

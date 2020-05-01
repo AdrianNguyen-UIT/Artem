@@ -32,7 +32,7 @@ namespace Artem
         virtual EventType GetEventType() const = 0;
         virtual std::string ToString() const = 0;
         virtual int GetCategories() const = 0;
-        bool IsInCategory(const EventCategory &p_Category)
+        bool IsInCategory(const EventCategory& p_Category)
         {
             return GetCategories() & p_Category;
         }
@@ -41,7 +41,7 @@ namespace Artem
         {
             return m_IsHandle;
         }
-        
+
         void SetHandled(bool p_IsHandle)
         {
             m_IsHandle = p_IsHandle;

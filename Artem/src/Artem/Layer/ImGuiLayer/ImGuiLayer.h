@@ -4,7 +4,7 @@
 
 namespace Artem
 {
-	class AT_API ImGuiLayer : public Layer
+	class ImGuiLayer : public Layer
 	{
 	private:
 		float m_Time = 0.0f;
